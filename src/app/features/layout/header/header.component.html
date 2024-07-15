@@ -1,0 +1,20 @@
+<div class="flex justify-between items-center mt-2">
+
+    <span class="mx-4"><b>{{tenantName}}</b> </span>
+
+    <div class=" flex justify-center items-center gap-8 mr-10">
+        <button class="cursor-pointer">
+   
+                <fa-icon [icon]="faBell" class="text-2xl hover:text-gray-500 "></fa-icon>
+
+        </button>
+
+        <div class="flex flex-row gap-3 items-center">
+            <span class="text-base font-medium">{{role}}</span>
+
+            <img src="{{ imagePath }}" alt="logo" class="cursor-pointer w-8 h-8 rounded-full border border-solid border-black ">
+
+        </div>
+    </div>
+
+</div>
