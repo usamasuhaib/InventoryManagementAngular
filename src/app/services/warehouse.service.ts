@@ -18,9 +18,11 @@ export class WarehouseService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
-      'TenantId': tenantId // Include the TenantId header
+      'TenantId': tenantId
     });
 
     return this.http.get<Warehouse[]>(`${this.baseUrl}/api/Warehouse/GetWarehouses`, { headers });
   }
+
+
 }

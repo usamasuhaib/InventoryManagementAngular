@@ -4,4 +4,5 @@ export interface InventoryItemDto {
     price: number;
     quantity: number;
     category: string;
+    wareHouseId:number;
   }

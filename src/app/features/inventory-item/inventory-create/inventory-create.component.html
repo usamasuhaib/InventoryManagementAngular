@@ -43,14 +43,30 @@
                     </select>
                 </div>
             </div>
-            <div id="row4" class="flex flex-row gap-8 w-full justify-between">
+ 
 
-                <div  class="flex flex-col gap-2 w-[50%]">
+
+            <div id="row3" class="flex flex-row gap-8 w-full justify-between">
+                <div class="flex flex-col gap-2 w-[50%]">
                     <label class="font-medium 2xl:text-lg" for="fname">Description</label>
-
-                <textarea name="" id=""  class=" h-9 2xl:h-12 rounded-md py-2 px-2 2xl:text-xl" formControlName="description"></textarea>
+            
+                    <textarea name="" id="" class=" h-9 2xl:h-12 rounded-md py-2 px-2 2xl:text-xl"
+                        formControlName="description"></textarea>
+                </div>
+            
+                <div class="flex flex-col gap-2 w-[50%]">
+                    <label class="font-medium 2xl:text-lg" for="warehouse">Select Warehouse:</label>
+                    <select id="warehouse" (change)="onWarehouseChange($event)">
+                        <option *ngFor="let warehouse of warehouses" [value]="warehouse.id">
+                          {{ warehouse.name }}
+                        </option>
+                      </select>
                 </div>
             </div>
+
+
+
+
 
             <div id="row4" class=" gap-2">
                 <button class=" h-[35px] px-4 py-2 bg-[#4835FA] rounded-md text-white font-medium hover:bg-[#3460FA]">Add Item</button>

@@ -14,10 +14,6 @@ export class InventoryService {
 
   constructor(private http: HttpClient) { }
 
-  // getInventoryItems(): Observable<InventoryItem[]> {
-  //   return this.http.get<InventoryItem[]>(`${this.baseUrl}/api/Inventory`);
-  // }
-
   getInventoryItems(tenantId: string): Observable<InventoryItem[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -28,15 +24,15 @@ export class InventoryService {
     return this.http.get<InventoryItem[]>(`${this.baseUrl}/api/Inventory/GetInventoryItems`, { headers });
   }
 
-  createInventoryItem(inventoryItemDto: InventoryItemDto, tenantId: string): Observable<InventoryItemDto> {
-    const token = localStorage.getItem('token');
+
+  createInventoryItem(data: InventoryItemDto, tenantId: string): Observable<any> {
+    const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
-      'TenantId': tenantId // Include the TenantId header
+      'TenantId': tenantId
     });
-  
-    return this.http.post<InventoryItemDto>(`${this.baseUrl}/api/Inventory/CreateInventoryItem`, inventoryItemDto, { headers });
-  }
 
+    return this.http.post<any>(`${this.baseUrl}/api/Inventory/CreateInventoryItem`, data, { headers });
+  }
 
 }
