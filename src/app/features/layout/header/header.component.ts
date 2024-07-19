@@ -3,6 +3,7 @@ import { Component, ElementRef } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell, faGear, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../../auth/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HeaderComponent {
 
 
   imagePath:string;
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService, private router:Router) { 
     this.imagePath = 'assets/images/profile1.jpg';
 
   }
@@ -44,9 +45,19 @@ export class HeaderComponent {
   isOpen: boolean = false; // Flag to track toggle state
 
 
+  isDropdownOpen = false;
 
   toggleOpen(): void {
     this.isOpen = true;
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  logout() {
+    // Clear user data and navigate to login or home page
+    localStorage.removeItem('token');  // Example of clearing token
+    this.router.navigate(['/login']);  // Navigate to login page
   }
 
 

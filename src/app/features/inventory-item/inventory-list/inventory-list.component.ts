@@ -64,6 +64,26 @@ export class InventoryListComponent {
 
   }
 
+deleteInventoryItem(id: any): void {
+  this.tenantId = this.authService.getTenantId();
+  
+  if (this.tenantId) {
+    this.inventoryService.deleteInventoryItem(id, this.tenantId).subscribe(
+      () => {
+        console.log('Inventory item deleted successfully');
+        this.router.navigate(['/inventory/list']);
+        this.toaster.success("Item deleted successfully")
+      },
+      (error) => {
+        console.error('Error deleting inventory item', error);
+      }
+    );
+  } else {
+    console.error('Tenant ID is missing');
+  }
+}
+
+
   addInventory(){
     return this.router.navigate(['admin/add-std']);
   }

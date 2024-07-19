@@ -51,9 +51,18 @@ export class InventoryService {
 
   updateInventoryItem(id: string, data: InventoryItemDto, tenantId: string): Observable<InventoryItemDto> {
     const token = localStorage.getItem('authToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('TenantId', tenantId);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('TenantId', tenantId);
+  
     return this.http.put<InventoryItemDto>(`${this.baseUrl}/api/Inventory/UpdateInventory/${id}`, data, { headers });
   }
-  
+
+
+  deleteInventoryItem(id: string, tenantId: string): Observable<void> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('TenantId', tenantId);
+    return this.http.delete<void>(`${this.baseUrl}/api/inventory/DeleteInventoryItem/${id}`, { headers });
+  }
 
 }

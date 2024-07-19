@@ -97,23 +97,28 @@ export class InventoryUpdateComponent {
     this.InventoryForm.patchValue({ wareHouseId: event.target.value });
   }
 
+  // inventory.component.ts
   updateInventoryItem(): void {
-    if (this.InventoryForm.valid) {
-      const updatedItem = this.InventoryForm.value;
-      this.inventoryService.updateInventoryItem(this.inventoryId!, updatedItem, this.tenantId!).subscribe(
-        (result) => {
-          console.log('Inventory item updated successfully', result);
-          this.router.navigate(['/inventory/list']);
-        },
-        (error) => {
-          console.error('Error updating inventory item', error);
-        }
-      );
-    }
+  this.tenantId = this.authService.getTenantId();
+  
+  if (this.tenantId) {
+    const updatedData: InventoryItemDto = this.InventoryForm.value;
+    
+    this.inventoryService.updateInventoryItem(this.inventoryId!, updatedData, this.tenantId).subscribe(
+      (updatedItem) => {
+        console.log('Inventory item updated successfully', updatedItem);
 
-
-
+        this.router.navigate(['/inventory/list']);
+      },
+      (error) => {
+        console.error('Error updating inventory item', error);
+      }
+    );
+  } else {
+    console.error('Tenant ID is missing');
   }
+}
+
 
 
   backToList(): void {
