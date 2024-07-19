@@ -64,6 +64,7 @@ export class InventoryCreateComponent {
       }
     );
   }
+
   onWarehouseChange(event: any): void {
     this.selectedWarehouseId = +event.target.value;
   }

@@ -35,4 +35,25 @@ export class InventoryService {
     return this.http.post<any>(`${this.baseUrl}/api/Inventory/CreateInventoryItem`, data, { headers });
   }
 
+  getInventoryItem(id: string, tenantId: string | null): Observable<InventoryItemDto> {
+    if (!tenantId) {
+      throw new Error('Tenant ID is required');
+    }
+
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('TenantId', tenantId);
+
+    return this.http.get<InventoryItemDto>(`${this.baseUrl}/api/inventory/GetInventoryItemById/${id}`, { headers });
+  }
+
+
+  updateInventoryItem(id: string, data: InventoryItemDto, tenantId: string): Observable<InventoryItemDto> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('TenantId', tenantId);
+    return this.http.put<InventoryItemDto>(`${this.baseUrl}/api/Inventory/UpdateInventory/${id}`, data, { headers });
+  }
+  
+
 }

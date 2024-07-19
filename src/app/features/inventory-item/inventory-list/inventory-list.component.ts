@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faEye, faRemove, faTrash, faWarning } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { AuthService } from '../../../auth/auth.service';
 @Component({
   selector: 'app-inventory-list',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule],
+  imports: [FontAwesomeModule, CommonModule, RouterLink],
   templateUrl: './inventory-list.component.html',
   styleUrl: './inventory-list.component.css'
 })
@@ -60,7 +60,7 @@ export class InventoryListComponent {
 
 
   onEdit(id: any) {
-    this.router.navigate(['admin/edit-std/' + id]);
+    this.router.navigate(['inventory/update', id]);
 
   }
 

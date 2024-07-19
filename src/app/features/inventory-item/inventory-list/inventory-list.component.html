@@ -40,12 +40,10 @@
 
                     <td class="p-3 text-[14px]">{{item.category}}</td>
                     <td class="p-3  flex flex-row gap-5">
-                        <button class="" title="Edit Record">
+                        <button class="" title="Edit Record" (click)="onEdit(item.id)">
                             <fa-icon [icon]="faEdit" class="text-xl text-blue-700"></fa-icon>
                         </button>
-                        <!-- <button class="" title="Delete Record" (click)="showDialog(student.userId)">
-                            <fa-icon [icon]="faDelete" class="text-xl text-red-600"></fa-icon>
-                        </button> -->
+            
 
                         <button class="" title="Delete Record" >
                             <fa-icon [icon]="faDelete" class="text-xl text-red-600"></fa-icon>
